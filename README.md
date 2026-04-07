@@ -1,3 +1,11 @@
+---
+title: Contract Risk Env
+emoji: ⚖️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
 # ContractRiskEnv ⚖️
 
 ContractRiskEnv is a robust, highly-structured reinforcement learning environment built on the **OpenEnv** specification. It is designed to train and strictly evaluate LLM agents on complex legal risk detection tasks.
