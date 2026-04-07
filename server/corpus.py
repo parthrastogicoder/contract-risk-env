@@ -8,13 +8,13 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 _CORPUS: Optional[Dict[str, Any]] = None
-_DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+_ROOT_DIR = Path(__file__).resolve().parent.parent
 
 
 def _load_corpus() -> Dict[str, Any]:
     global _CORPUS
     if _CORPUS is None:
-        corpus_path = _DATA_DIR / "contracts_corpus.json"
+        corpus_path = _ROOT_DIR / "contracts_corpus.json"
         if not corpus_path.exists():
             raise FileNotFoundError(f"Corpus not found at {corpus_path}")
         with open(corpus_path, "r", encoding="utf-8") as f:
