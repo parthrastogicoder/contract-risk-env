@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from openenv.core.env_server import create_fastapi_app
 from pydantic import BaseModel, Field
 
-from ..models import ClauseFlag, ContractAction, ContractObservation, ContractState
+from contract_risk_env.models import ClauseFlag, ContractAction, ContractObservation, ContractState
 from .corpus import get_labels, list_contracts, get_contract
 from .environment import ContractRiskEnvironment
 from .graders import grade

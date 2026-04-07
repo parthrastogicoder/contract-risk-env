@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional
 
 from openenv.core.env_server import Environment
 
-from ..models import ContractAction, ContractObservation, ContractState
+from contract_risk_env.models import ContractAction, ContractObservation, ContractState
 from . import corpus
 from .graders import grade
 
