@@ -24,4 +24,7 @@ dev = ["pytest", "httpx"]
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["contract_risk_env*"]
+include = ["contract_risk_env*", "server*"]
+
+[project.scripts]
+server = "server.app:app"
