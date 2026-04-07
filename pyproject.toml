@@ -27,4 +27,4 @@ where = ["."]
 include = ["contract_risk_env*", "server*"]
 
 [project.scripts]
-server = "server.app:app"
+server = "server.app:main"

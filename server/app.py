@@ -191,3 +191,10 @@ def run_baseline() -> Dict[str, Any]:
         total += r["reward"]
     scores["mean"] = round(total / 3, 4)
     return scores
+
+def main():
+    import uvicorn
+    uvicorn.run("server.app:app", host="0.0.0.0", port=8000)
+
+if __name__ == "__main__":
+    main()
