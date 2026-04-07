@@ -1,0 +1,481 @@
+{
+  "version": "1.0.0",
+  "description": "ContractRiskEnv corpus — 9 contracts (3 per difficulty: easy/medium/hard). Each contract is synthetic but legally realistic. Ground-truth labels include clause_id, risk_type, severity (1-3), and character span.",
+  "risk_types": [
+    "unlimited_liability",
+    "auto_renewal",
+    "unilateral_amendment",
+    "ip_assignment_overreach",
+    "indemnification_asymmetry",
+    "data_ownership_ambiguity",
+    "termination_without_cause"
+  ],
+  "severity_scale": {
+    "1": "medium — worth flagging, low immediate financial exposure",
+    "2": "high — significant financial or operational risk",
+    "3": "critical — existential financial or IP risk"
+  },
+  "contracts": [
+    {
+      "contract_id": "saas_001",
+      "difficulty": "easy",
+      "title": "Software-as-a-Service Subscription Agreement",
+      "parties": [
+        "Vendor: Cloudify Technologies Inc.",
+        "Customer: Acme Corp"
+      ],
+      "notes": "Risks are explicit, standalone, clearly phrased. An attentive reader finds them in a single pass. Designed to score 0.80-0.95 F1 for a capable LLM baseline.",
+      "text": "SOFTWARE-AS-A-SERVICE SUBSCRIPTION AGREEMENT\n\nThis Software-as-a-Service Subscription Agreement (the \"Agreement\") is entered into as of the Effective Date by and between Cloudify Technologies Inc., a Delaware corporation (\"Vendor\"), and the entity identified in the applicable Order Form (\"Customer\").\n\n1. DEFINITIONS\n\n1.1 \"Service\" means Vendor's proprietary cloud-based data analytics platform, including all updates, upgrades, and modifications thereto made available to Customer during the Subscription Term.\n\n1.2 \"Subscription Term\" means the initial period specified in the Order Form and any renewal periods thereafter.\n\n1.3 \"Authorized Users\" means Customer's employees, contractors, and agents who are permitted to access the Service under this Agreement.\n\n1.4 \"Customer Data\" means all data, content, and information submitted by Customer or its Authorized Users to the Service.\n\n2. LICENSE GRANT\n\n2.1 Subject to the terms of this Agreement and timely payment of all fees, Vendor grants Customer a limited, non-exclusive, non-transferable, non-sublicensable license to access and use the Service during the Subscription Term solely for Customer's internal business purposes.\n\n2.2 Customer shall not: (a) sublicense, sell, resell, or transfer the Service; (b) reverse engineer or decompile the Service; (c) access the Service to build a competitive product; or (d) use the Service to store or transmit unlawful material.\n\n3. FEES AND PAYMENT\n\n3.1 Customer shall pay Vendor the fees set forth in the applicable Order Form. All fees are due within thirty (30) days of invoice.\n\n3.2 Vendor may increase fees upon sixty (60) days written notice to Customer prior to the start of any renewal Subscription Term.\n\n4. SUBSCRIPTION TERM AND RENEWAL\n\n4.1 This Agreement commences on the Effective Date and continues for the Initial Subscription Term specified in the Order Form.\n\n4.2 AUTOMATIC RENEWAL: Unless either party provides written notice of non-renewal at least ninety (90) days prior to the end of the then-current Subscription Term, this Agreement shall automatically renew for successive one (1) year periods at the then-current list price, which may differ from Customer's initial pricing. Customer acknowledges that failure to provide timely notice of non-renewal will result in binding commitment to an additional full-year subscription term.\n\n5. TERMINATION\n\n5.1 Either party may terminate this Agreement for cause upon thirty (30) days written notice if the other party materially breaches this Agreement and fails to cure such breach within the notice period.\n\n5.2 TERMINATION FOR CONVENIENCE: Vendor may terminate this Agreement or any Service at any time for any reason or no reason upon fifteen (15) days written notice to Customer. In the event of such termination, Vendor shall refund any prepaid fees covering the period after the effective date of termination on a pro-rata basis.\n\n5.3 Upon termination, Customer's right to access and use the Service shall immediately cease. Customer shall have thirty (30) days to export its Customer Data, after which Vendor may permanently delete all Customer Data.\n\n6. INTELLECTUAL PROPERTY\n\n6.1 Vendor retains all right, title, and interest in and to the Service, including all intellectual property rights therein. Nothing in this Agreement transfers any ownership of the Service to Customer.\n\n6.2 CUSTOMER WORK PRODUCT: All analyses, reports, dashboards, custom integrations, scripts, and derivative works created by Customer or its Authorized Users using or in connection with the Service (\"Customer Work Product\") are hereby irrevocably assigned to and shall be the sole and exclusive property of Vendor. Customer hereby waives any moral rights in such Customer Work Product. Customer grants Vendor a perpetual, irrevocable, royalty-free license to use Customer Data to improve the Service and for any other commercial purpose Vendor deems appropriate.\n\n7. WARRANTIES AND DISCLAIMER\n\n7.1 Vendor warrants that the Service will perform materially in accordance with applicable documentation during the Subscription Term. Vendor's sole obligation for breach of this warranty is to use commercially reasonable efforts to correct the non-conformity.\n\n7.2 DISCLAIMER: EXCEPT AS SET FORTH IN SECTION 7.1, THE SERVICE IS PROVIDED \"AS IS\" WITHOUT WARRANTY OF ANY KIND. VENDOR DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED.\n\n8. LIMITATION OF LIABILITY\n\n8.1 IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, PUNITIVE, OR EXEMPLARY DAMAGES.\n\n8.2 UNLIMITED LIABILITY: Notwithstanding Section 8.1 or any other provision of this Agreement, Customer's liability to Vendor shall be unlimited and shall include all direct, indirect, consequential, special, incidental, punitive, and exemplary damages of any kind, including but not limited to lost profits, loss of goodwill, loss of business opportunity, and any other damages whether foreseeable or not, arising out of or in connection with Customer's use of the Service or breach of any provision of this Agreement. There shall be no cap or limitation on Customer's liability to Vendor under any theory of law.\n\n9. MODIFICATIONS TO AGREEMENT\n\n9.1 UNILATERAL AMENDMENT: Vendor reserves the right to modify any term or condition of this Agreement at any time and without prior notice to Customer. Modified terms will be posted to Vendor's website and shall become effective immediately upon posting. Customer's continued use of the Service following any modification constitutes Customer's binding acceptance of the modified Agreement. Customer is solely responsible for reviewing the Agreement periodically for modifications.\n\n10. GOVERNING LAW\n\n10.1 This Agreement shall be governed by the laws of the State of Delaware without regard to its conflict of law provisions. Any disputes shall be resolved exclusively in the state or federal courts located in Wilmington, Delaware.\n\n10.2 WAIVER OF JURY TRIAL: Each party hereby irrevocably waives its right to a trial by jury in any action arising under or related to this Agreement.",
+      "labels": [
+        {
+          "clause_id": "clause_4_2",
+          "risk_type": "auto_renewal",
+          "severity": 2,
+          "span_text": "AUTOMATIC RENEWAL: Unless either party provides written notice of non-renewal at least ninety (90) days prior to the end of the then-current Subscription Term, this Agreement shall automatically renew for successive one (1) year periods at the then-current list price",
+          "span_section": "Section 4.2",
+          "grader_note": "90-day notice window is unusually long; pricing may reset to list price. Clear and explicit — easy to find."
+        },
+        {
+          "clause_id": "clause_5_2",
+          "risk_type": "termination_without_cause",
+          "severity": 2,
+          "span_text": "Vendor may terminate this Agreement or any Service at any time for any reason or no reason upon fifteen (15) days written notice to Customer.",
+          "span_section": "Section 5.2",
+          "grader_note": "15-day notice is operationally very short for a business-critical SaaS. Explicit and standalone."
+        },
+        {
+          "clause_id": "clause_6_2",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "All analyses, reports, dashboards, custom integrations, scripts, and derivative works created by Customer or its Authorized Users using or in connection with the Service (\"Customer Work Product\") are hereby irrevocably assigned to and shall be the sole and exclusive property of Vendor.",
+          "span_section": "Section 6.2",
+          "grader_note": "Customer loses ownership of everything it creates with the tool. Critical. Also contains data_ownership_ambiguity in the perpetual license for Customer Data."
+        },
+        {
+          "clause_id": "clause_6_2b",
+          "risk_type": "data_ownership_ambiguity",
+          "severity": 2,
+          "span_text": "Customer grants Vendor a perpetual, irrevocable, royalty-free license to use Customer Data to improve the Service and for any other commercial purpose Vendor deems appropriate.",
+          "span_section": "Section 6.2",
+          "grader_note": "'Any other commercial purpose' is extremely broad. Customer data can be sold or used for training."
+        },
+        {
+          "clause_id": "clause_8_2",
+          "risk_type": "unlimited_liability",
+          "severity": 3,
+          "span_text": "Customer's liability to Vendor shall be unlimited and shall include all direct, indirect, consequential, special, incidental, punitive, and exemplary damages of any kind",
+          "span_section": "Section 8.2",
+          "grader_note": "Section heading is 'UNLIMITED LIABILITY' — maximally explicit. The asymmetry (vendor capped, customer uncapped) makes this critical."
+        },
+        {
+          "clause_id": "clause_9_1",
+          "risk_type": "unilateral_amendment",
+          "severity": 3,
+          "span_text": "Vendor reserves the right to modify any term or condition of this Agreement at any time and without prior notice to Customer. Modified terms will be posted to Vendor's website and shall become effective immediately upon posting.",
+          "span_section": "Section 9.1",
+          "grader_note": "No notice required, effective immediately. Vendor can change pricing, liability caps, or data terms at will."
+        }
+      ]
+    },
+    {
+      "contract_id": "ip_license_002",
+      "difficulty": "medium",
+      "title": "Intellectual Property Licensing and Services Agreement",
+      "parties": [
+        "Licensor: Meridian Analytics Ltd.",
+        "Licensee: Borealis Financial Group"
+      ],
+      "notes": "Risks are real but require cross-referencing. The auto-renewal trap is inside a defined term in Section 1. The IP overreach requires reading Section 6.3 in light of the definition in Section 1.7. An agent that reads linearly without tracking definitions will miss both. Designed to score 0.45-0.60 F1 for a capable LLM baseline.",
+      "text": "INTELLECTUAL PROPERTY LICENSING AND SERVICES AGREEMENT\n\nThis Intellectual Property Licensing and Services Agreement (\"Agreement\") is made effective as of the date of last signature below (\"Effective Date\") by and between Meridian Analytics Ltd., a company incorporated in England and Wales with registered number 09234871 (\"Licensor\"), and Borealis Financial Group, a federally chartered Canadian bank (\"Licensee\").\n\n1. DEFINITIONS\n\nFor purposes of this Agreement, the following terms shall have the meanings ascribed to them below:\n\n1.1 \"Licensed Software\" means Licensor's proprietary risk modelling suite known as \"MeridianRisk,\" including all modules, libraries, and components identified in Schedule A.\n\n1.2 \"Documentation\" means the technical and user documentation provided by Licensor for the Licensed Software.\n\n1.3 \"Licensed Materials\" means, collectively, the Licensed Software and the Documentation.\n\n1.4 \"Maintenance and Support\" means the services described in Schedule B, including bug fixes, patches, and telephone support during Business Hours.\n\n1.5 \"Derivative Analysis\" means any financial model, risk score, assessment, prediction, valuation, report, or analytical output that is produced by Licensee through or with material assistance from the Licensed Software, whether or not such output is further processed or transformed by Licensee subsequent to production.\n\n1.6 \"Business Hours\" means 9:00 a.m. to 5:00 p.m. Eastern Time, Monday through Friday, excluding statutory holidays in Ontario, Canada.\n\n1.7 \"Evergreen Term\" means a Subscription Term that, upon expiration of its Initial Period, shall automatically continue and renew on a month-to-month basis at a fee of one hundred fifteen percent (115%) of the annualized Initial Period fee, prorated monthly, unless Licensee provides written notice of termination delivered by registered mail to Licensor's registered address no fewer than one hundred twenty (120) days prior to the date on which Licensee wishes termination to take effect.\n\n1.8 \"Background IP\" means any intellectual property owned or controlled by a party prior to the Effective Date or developed independently of this Agreement.\n\n1.9 \"Foreground IP\" means any intellectual property first conceived, reduced to practice, or developed by either party, or jointly, in the performance of activities under this Agreement.\n\n2. LICENSE GRANT\n\n2.1 Subject to the terms and conditions of this Agreement, Licensor hereby grants to Licensee a non-exclusive, non-transferable, non-sublicensable license to install and use the Licensed Materials solely within Licensee's internal computing environment for Licensee's internal business purposes during the Subscription Term.\n\n2.2 The license granted in Section 2.1 is limited to use by Licensee's employees and does not extend to contractors, agents, affiliates, or subsidiaries of Licensee unless Licensor provides prior written consent.\n\n3. SUBSCRIPTION TERM\n\n3.1 The initial subscription period (\"Initial Period\") commences on the Effective Date and continues for two (2) years (\"Initial Subscription Term\").\n\n3.2 Upon expiration of the Initial Subscription Term, and upon expiration of each subsequent term thereafter, this Agreement shall automatically continue as an Evergreen Term as defined in Section 1.7, unless a party provides notice in accordance with Section 1.7.\n\n3.3 Licensor may, at any time during an Evergreen Term, convert the Agreement back to a fixed-term subscription by providing written notice to Licensee specifying the proposed fixed term and applicable fees, which Licensee may accept or reject within fifteen (15) days.\n\n4. FEES\n\n4.1 Licensee shall pay the fees set forth in Schedule C during the Initial Subscription Term.\n\n4.2 Fees during any Evergreen Term shall be as specified in Section 1.7 of this Agreement.\n\n4.3 All fees are exclusive of applicable taxes. Licensee shall pay all applicable sales, use, goods and services, value-added, and similar taxes.\n\n5. CONFIDENTIALITY\n\n5.1 Each party agrees to hold in strict confidence all Confidential Information of the other party and to use such information solely for the purposes contemplated by this Agreement.\n\n5.2 \"Confidential Information\" means any non-public information disclosed by one party to the other in connection with this Agreement that is designated as confidential or that reasonably should be understood to be confidential.\n\n5.3 The obligations in Section 5.1 shall survive termination of this Agreement for a period of five (5) years.\n\n6. INTELLECTUAL PROPERTY\n\n6.1 Each party retains all right, title, and interest in and to its respective Background IP. Nothing in this Agreement transfers ownership of Background IP.\n\n6.2 All Foreground IP developed solely by Licensor in the course of providing services under this Agreement shall belong exclusively to Licensor.\n\n6.3 All Foreground IP developed solely by Licensee, including but not limited to any Derivative Analysis as defined in Section 1.5, and any methods, processes, models, or workflows developed by Licensee that incorporate, apply, reference, or build upon the Licensed Software or any output thereof, shall automatically vest in and be assigned to Licensor upon creation without further act or instrument. Licensee hereby waives, to the maximum extent permitted by applicable law, any right to assert ownership of or compensation for such Foreground IP. Licensor grants Licensee a non-exclusive, revocable license to use such Foreground IP solely in connection with the Licensed Software during the Subscription Term.\n\n6.4 Licensee shall promptly disclose to Licensor in writing any Foreground IP developed by Licensee and shall execute such documents and take such further actions as Licensor may reasonably request to perfect Licensor's rights therein.\n\n7. INDEMNIFICATION\n\n7.1 Licensor shall indemnify, defend, and hold harmless Licensee from and against any third-party claims alleging that the Licensed Software, as delivered and used in accordance with this Agreement, infringes any patent, copyright, or trade secret of a third party.\n\n7.2 Licensee shall indemnify, defend, and hold harmless Licensor, its officers, directors, employees, and agents from and against any and all claims, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) Licensee's use of the Licensed Software; (b) any breach of this Agreement by Licensee; (c) any Derivative Analysis produced by Licensee; or (d) any claim by a third party arising from Licensee's business operations.\n\n7.3 The indemnification obligations in Section 7.2 are not subject to any cap or limitation set forth elsewhere in this Agreement.\n\n8. LIMITATION OF LIABILITY\n\n8.1 In no event shall Licensor's aggregate liability under this Agreement exceed the total fees paid by Licensee in the twelve (12) months immediately preceding the claim giving rise to liability.\n\n8.2 Neither party shall be liable for any indirect, incidental, consequential, special, or punitive damages, regardless of the theory of liability.\n\n9. DATA\n\n9.1 Licensee acknowledges that Licensor may collect and process anonymized and aggregated usage data from Licensee's use of the Licensed Software (\"Usage Data\").\n\n9.2 Licensor shall own all right, title, and interest in Usage Data and may use, disclose, sell, or sublicense Usage Data for any purpose, including product development, benchmarking, marketing, or sale to third parties, without restriction and without obligation to Licensee.\n\n9.3 Licensee represents and warrants that it has obtained all consents necessary for Licensor to process Usage Data as described in Section 9.2.\n\n10. GOVERNING LAW AND DISPUTE RESOLUTION\n\n10.1 This Agreement is governed by the laws of the Province of Ontario and the federal laws of Canada applicable therein.\n\n10.2 Any dispute shall be referred to and finally resolved by binding arbitration under the Rules of Arbitration of the International Chamber of Commerce by a single arbitrator in Toronto, Ontario. The language of the arbitration shall be English.",
+      "labels": [
+        {
+          "clause_id": "clause_1_7",
+          "risk_type": "auto_renewal",
+          "severity": 3,
+          "span_text": "\"Evergreen Term\" means a Subscription Term that, upon expiration of its Initial Period, shall automatically continue and renew on a month-to-month basis at a fee of one hundred fifteen percent (115%) of the annualized Initial Period fee, prorated monthly, unless Licensee provides written notice of termination delivered by registered mail to Licensor's registered address no fewer than one hundred twenty (120) days prior to the date on which Licensee wishes termination to take effect.",
+          "span_section": "Section 1.7",
+          "grader_note": "Hidden inside definitions section. 115% price escalation and 120-day registered mail notice window. Agent must connect Section 1.7 definition to Section 3.2 operative clause to understand the trap. Risk is severity 3 due to price escalation compounding over time."
+        },
+        {
+          "clause_id": "clause_6_3",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "All Foreground IP developed solely by Licensee, including but not limited to any Derivative Analysis as defined in Section 1.5, and any methods, processes, models, or workflows developed by Licensee that incorporate, apply, reference, or build upon the Licensed Software or any output thereof, shall automatically vest in and be assigned to Licensor upon creation without further act or instrument.",
+          "span_section": "Section 6.3",
+          "grader_note": "Agent must follow cross-reference to Section 1.5 definition of 'Derivative Analysis' to understand full scope. Any risk model, report, or valuation Licensee builds is assigned to the Licensor. For a bank, this is all internal risk work."
+        },
+        {
+          "clause_id": "clause_7_2",
+          "risk_type": "indemnification_asymmetry",
+          "severity": 2,
+          "span_text": "Licensee shall indemnify, defend, and hold harmless Licensor, its officers, directors, employees, and agents from and against any and all claims, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) Licensee's use of the Licensed Software; (b) any breach of this Agreement by Licensee; (c) any Derivative Analysis produced by Licensee; or (d) any claim by a third party arising from Licensee's business operations.",
+          "span_section": "Section 7.2",
+          "grader_note": "Licensor's indemnity (7.1) is narrow (IP infringement only, as-delivered). Licensee's indemnity (7.2) covers essentially all use of the software, all outputs, and all business operations. Section 7.3 explicitly removes any liability cap from 7.2."
+        },
+        {
+          "clause_id": "clause_9_2",
+          "risk_type": "data_ownership_ambiguity",
+          "severity": 2,
+          "span_text": "Licensor shall own all right, title, and interest in Usage Data and may use, disclose, sell, or sublicense Usage Data for any purpose, including product development, benchmarking, marketing, or sale to third parties, without restriction and without obligation to Licensee.",
+          "span_section": "Section 9.2",
+          "grader_note": "'Anonymized and aggregated' in 9.1 is not defined. For a financial institution, usage patterns and query behaviour may be commercially sensitive even if anonymized."
+        }
+      ]
+    },
+    {
+      "contract_id": "enterprise_msa_003",
+      "difficulty": "hard",
+      "title": "Master Services Agreement — Enterprise Platform",
+      "parties": [
+        "Provider: Nexus Platform Corp.",
+        "Client: Stratum Energy Holdings LLC"
+      ],
+      "notes": "The hardest category. Three of the four risks are hidden inside clauses that appear protective on first reading. The unlimited liability clause (Section 11.4) appears under the heading 'Mutual Liability Cap' and reads like a cap until the exception in 11.4(c) swallows the entire protection. The IP clause (Section 8.2) reads as a joint ownership arrangement until 8.2(d) gives Provider unilateral commercialization rights. The auto-renewal (Section 3.4) is buried in a 'Service Continuity' clause that reads as a customer protection. A linear reader will miss all three. Designed to score 0.20-0.35 F1 for a capable LLM baseline.",
+      "text": "MASTER SERVICES AGREEMENT\n\nThis Master Services Agreement (\"MSA\" or \"Agreement\") is entered into as of the Effective Date set forth on the cover page by and between Nexus Platform Corp., a Delaware corporation (\"Provider\"), and the Client entity identified on the cover page (\"Client\"). This Agreement governs all services, subscriptions, and deliverables provided by Provider to Client.\n\n1. DEFINITIONS\n\n1.1 \"Affiliate\" means any entity that directly or indirectly controls, is controlled by, or is under common control with a party, where \"control\" means ownership of more than fifty percent (50%) of the voting equity.\n\n1.2 \"Background Technology\" means technology, software, tools, methodologies, know-how, and intellectual property owned or licensed by a party prior to the Effective Date or developed by a party outside the scope of this Agreement.\n\n1.3 \"Client Systems\" means Client's internal IT infrastructure, networks, hardware, and software environments into which Provider may integrate or deploy the Platform.\n\n1.4 \"Deliverables\" means any work product, software, configuration, documentation, report, or other material specifically created for Client pursuant to a Statement of Work.\n\n1.5 \"Developed Technology\" means any technology, software, algorithm, model, process, or invention first created in the performance of services under this Agreement, whether created solely by Provider, solely by Client, or jointly.\n\n1.6 \"Platform\" means Provider's enterprise data management and workflow automation platform, including all associated APIs, integrations, and hosted infrastructure.\n\n1.7 \"Service Level Agreement\" or \"SLA\" means the service availability and performance commitments set forth in Schedule D.\n\n1.8 \"Statement of Work\" or \"SOW\" means a document executed by both parties that describes specific services, Deliverables, timelines, and fees.\n\n1.9 \"Renewal Trigger\" means the event by which a Subscription Term automatically extends, as further described in Section 3.4.\n\n2. SERVICES\n\n2.1 Provider shall provide Client access to the Platform and such professional services as are described in one or more Statements of Work executed hereunder.\n\n2.2 Provider shall perform all services in a professional and workmanlike manner consistent with industry standards.\n\n2.3 Client shall provide Provider with reasonable access to Client Systems, personnel, and information as necessary for Provider to perform the services.\n\n3. TERM\n\n3.1 This Agreement commences on the Effective Date and continues until terminated in accordance with Section 12, unless earlier terminated.\n\n3.2 Each Statement of Work shall specify the applicable subscription or service term (\"Subscription Term\").\n\n3.3 Provider shall use commercially reasonable efforts to notify Client no later than sixty (60) days prior to the expiration of any Subscription Term of the upcoming expiration date (\"Expiration Notice\").\n\n3.4 SERVICE CONTINUITY PROVISION: To protect Client from inadvertent service interruption and data access loss that may result from administrative oversight, and in recognition of the operational dependencies Client may develop on the Platform, if Provider has not received written confirmation from Client's designated contract administrator (as registered in Provider's customer portal) that Client elects to allow the Subscription Term to lapse, the Subscription Term shall automatically extend for a period equal to the greater of (i) the length of the expiring Subscription Term or (ii) twelve (12) months (\"Extended Term\"), at Provider's then-current standard list pricing applicable to Client's usage tier, which may be updated by Provider from time to time. Provider's obligation to send the Expiration Notice described in Section 3.3 is a courtesy and does not create a condition precedent to the Renewal Trigger. Client acknowledges that Provider's customer portal constitutes the authoritative system of record for renewal elections and that email communications from Client personnel other than the designated contract administrator shall not constitute valid renewal elections.\n\n4. FEES\n\n4.1 Client shall pay all fees set forth in applicable Statements of Work and as adjusted during any Extended Term pursuant to Section 3.4.\n\n4.2 Provider may update the fee schedule applicable to any Extended Term upon thirty (30) days notice delivered through the customer portal.\n\n4.3 Invoices are due within forty-five (45) days of the invoice date. Overdue amounts accrue interest at one and one-half percent (1.5%) per month.\n\n5. CONFIDENTIALITY\n\n5.1 Each party shall protect the other's Confidential Information using the same degree of care it uses to protect its own Confidential Information, but in no event less than reasonable care.\n\n5.2 \"Confidential Information\" excludes information that: (a) is or becomes publicly available through no fault of the receiving party; (b) was known to the receiving party prior to disclosure; (c) is rightfully received from a third party without restriction; or (d) is independently developed by the receiving party.\n\n5.3 Confidentiality obligations shall survive termination of this Agreement for three (3) years.\n\n6. DATA PROCESSING AND OWNERSHIP\n\n6.1 Client retains ownership of all raw data submitted by Client to the Platform (\"Client Raw Data\").\n\n6.2 Provider shall process Client Raw Data solely as necessary to provide the services described in this Agreement and applicable SOWs.\n\n6.3 Operational and Derived Data. Notwithstanding Section 6.1, Client acknowledges and agrees that: (a) metadata generated by the Platform during the processing of Client Raw Data, including but not limited to processing logs, error records, latency metrics, and resource utilization data (\"Operational Metadata\") shall be owned exclusively by Provider; (b) statistical models, trained weights, learned parameters, and aggregated benchmarks derived by Provider from the processing of Client Raw Data across Provider's customer base, including data from Client (\"Derived Models\") shall be owned exclusively by Provider and may be incorporated into Provider's commercial products and services without compensation to Client; and (c) Client hereby irrevocably assigns to Provider any interest Client may have in Operational Metadata or Derived Models.\n\n7. INTELLECTUAL PROPERTY — BACKGROUND TECHNOLOGY\n\n7.1 Each party retains all right, title, and interest in and to its respective Background Technology. This Agreement does not transfer any ownership of Background Technology.\n\n7.2 Provider grants Client a limited, non-exclusive, revocable license to use Provider's Background Technology solely to the extent necessary to receive the services during the applicable Subscription Term.\n\n8. INTELLECTUAL PROPERTY — DEVELOPED TECHNOLOGY\n\n8.1 Deliverables specified in a Statement of Work as \"Client-Owned Deliverables\" shall be owned by Client upon full payment of all applicable fees. Provider hereby assigns to Client all right, title, and interest in such Client-Owned Deliverables, subject to Section 8.3.\n\n8.2 Joint Development and Platform Enhancements. The parties acknowledge that the performance of services under this Agreement may result in improvements, enhancements, extensions, or modifications to the Platform or to Provider's methodologies and tooling (collectively, \"Platform Enhancements\"), which may incorporate elements developed by Client personnel or arising from Client's specific use case. With respect to all Platform Enhancements:\n\n(a) The parties shall be deemed co-owners of all Platform Enhancements, each holding an undivided interest therein;\n\n(b) Each party may use Platform Enhancements for its own internal purposes without accounting to the other party;\n\n(c) Neither party shall transfer, assign, or sublicense its interest in any Platform Enhancement to a third party without the prior written consent of the other party; and\n\n(d) Notwithstanding subsections (a) through (c), Provider is hereby granted, and Client hereby irrevocably grants to Provider, the exclusive, worldwide, perpetual, irrevocable, royalty-free right to commercialize, sublicense, incorporate into Provider's products and services, and otherwise exploit any Platform Enhancement in any manner Provider deems appropriate, without the consent of, notice to, or compensation to Client. For clarity, the co-ownership described in subsection (a) does not entitle Client to any revenue, royalties, or compensation arising from Provider's commercialization of Platform Enhancements pursuant to this subsection (d).\n\n8.3 Provider License-Back. Provider retains, and Client acknowledges that Provider retains, a perpetual, irrevocable, royalty-free license to use, reproduce, and create derivative works of any Client-Owned Deliverable for Provider's internal purposes and product development.\n\n9. INDEMNIFICATION\n\n9.1 Provider Indemnification. Provider shall indemnify, defend, and hold harmless Client from third-party claims alleging that the Platform, as delivered and used in compliance with this Agreement, infringes any United States patent issued as of the Effective Date, copyright, or trade secret, provided that Client: (a) promptly notifies Provider in writing of the claim; (b) grants Provider sole control of the defense and settlement; and (c) provides Provider with reasonable assistance.\n\n9.2 Client Indemnification. Client shall indemnify, defend, and hold harmless Provider and its Affiliates, officers, directors, employees, agents, successors, and assigns from and against any and all losses, damages, liabilities, deficiencies, actions, judgments, interest, awards, penalties, fines, costs, or expenses (including reasonable attorneys' fees and the cost of enforcing any right to indemnification) arising out of or related to: (a) Client's use of or access to the Platform; (b) Client Raw Data; (c) Client's violation of applicable law; (d) Client's breach of any representation, warranty, covenant, or obligation under this Agreement; or (e) any claim by Client's customers, partners, or regulators arising from Client's business operations or use of Deliverables.\n\n10. WARRANTIES\n\n10.1 Each party represents and warrants that: (a) it has the legal authority to enter into this Agreement; (b) its performance will not violate any applicable law; and (c) its performance will not infringe the intellectual property rights of any third party.\n\n10.2 Provider warrants that the Platform will perform materially in accordance with the SLA during the Subscription Term. Client's sole remedy for breach of this warranty is the service credits described in Schedule D.\n\n11. LIMITATION OF LIABILITY\n\n11.1 MUTUAL EXCLUSION OF CONSEQUENTIAL DAMAGES: Neither party shall be liable to the other for any indirect, incidental, consequential, special, exemplary, or punitive damages, including but not limited to lost profits, loss of revenue, loss of data, loss of goodwill, or cost of substitute goods or services, even if such party has been advised of the possibility of such damages.\n\n11.2 MUTUAL LIABILITY CAP: Subject to Section 11.4, each party's aggregate liability to the other party for all claims arising out of or related to this Agreement, whether in contract, tort, or otherwise, shall not exceed the total fees paid or payable by Client to Provider in the twelve (12) months immediately preceding the event giving rise to the claim.\n\n11.3 The limitations set forth in Sections 11.1 and 11.2 shall apply regardless of the theory of liability and regardless of whether a party has been advised of the possibility of such liability.\n\n11.4 EXCEPTIONS TO MUTUAL LIABILITY CAP: The mutual liability cap set forth in Section 11.2 shall not apply to, and there shall be no cap or limitation whatsoever on liability for:\n\n(a) a party's obligation to indemnify the other party pursuant to Section 9;\n\n(b) damages arising from a party's gross negligence or willful misconduct;\n\n(c) Client's payment obligations under this Agreement, including all fees, expenses, interest, and collection costs; and\n\n(d) Client's obligations with respect to intellectual property under Sections 7, 8, and 6.3, including but not limited to any unauthorized use of Provider's Background Technology, any failure to assign Developed Technology, and any breach of the data provisions of Section 6.\n\n11.5 For the avoidance of doubt, the exceptions in Section 11.4 mean that Client's liability for payment defaults and intellectual property breaches is unlimited, while Provider's liability for the same categories is subject to the cap in Section 11.2.\n\n12. TERMINATION\n\n12.1 Either party may terminate this Agreement for cause upon sixty (60) days written notice specifying the material breach, provided the breaching party fails to cure within the notice period.\n\n12.2 Either party may terminate this Agreement upon sixty (60) days written notice if the other party becomes insolvent, makes a general assignment for the benefit of creditors, or has a receiver appointed.\n\n12.3 Termination of this Agreement does not terminate any outstanding Statements of Work unless specifically agreed in writing.\n\n13. GENERAL\n\n13.1 This Agreement, together with all Schedules and SOWs, constitutes the entire agreement between the parties and supersedes all prior agreements, representations, and understandings.\n\n13.2 Provider may assign this Agreement or any of its rights or obligations hereunder without Client's consent. Client may not assign this Agreement without Provider's prior written consent, which shall not be unreasonably withheld.\n\n13.3 This Agreement shall be governed by the laws of the State of New York.",
+      "labels": [
+        {
+          "clause_id": "clause_3_4",
+          "risk_type": "auto_renewal",
+          "severity": 3,
+          "span_text": "SERVICE CONTINUITY PROVISION: To protect Client from inadvertent service interruption... if Provider has not received written confirmation from Client's designated contract administrator (as registered in Provider's customer portal) that Client elects to allow the Subscription Term to lapse, the Subscription Term shall automatically extend for a period equal to the greater of (i) the length of the expiring Subscription Term or (ii) twelve (12) months... at Provider's then-current standard list pricing",
+          "span_section": "Section 3.4",
+          "grader_note": "HARD: Clause is titled 'Service Continuity Provision' and opens with language about protecting the Client. The renewal trap is inside the protective framing. Notice must come from a specific named person in a portal (not email). The 60-day expiration notice (3.3) is explicitly not a condition precedent to renewal. Term can double (greater of current term or 12 months). Severity 3."
+        },
+        {
+          "clause_id": "clause_6_3b",
+          "risk_type": "data_ownership_ambiguity",
+          "severity": 3,
+          "span_text": "statistical models, trained weights, learned parameters, and aggregated benchmarks derived by Provider from the processing of Client Raw Data across Provider's customer base, including data from Client (\"Derived Models\") shall be owned exclusively by Provider and may be incorporated into Provider's commercial products and services without compensation to Client",
+          "span_section": "Section 6.3(b)",
+          "grader_note": "Client retains raw data (6.1) but any model trained on it belongs to Provider. For an energy company, this means proprietary operational patterns and forecasting models derived from Client's data enrich Provider's commercial offerings."
+        },
+        {
+          "clause_id": "clause_8_2d",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "Notwithstanding subsections (a) through (c), Provider is hereby granted, and Client hereby irrevocably grants to Provider, the exclusive, worldwide, perpetual, irrevocable, royalty-free right to commercialize, sublicense, incorporate into Provider's products and services, and otherwise exploit any Platform Enhancement in any manner Provider deems appropriate, without the consent of, notice to, or compensation to Client.",
+          "span_section": "Section 8.2(d)",
+          "grader_note": "HARD: Subsections (a)-(c) read as fair joint ownership. Subsection (d) begins with 'Notwithstanding' and grants Provider exclusive commercialization rights, making the 'co-ownership' in (a) commercially worthless. Agent must read all four subsections and recognise that (d) negates the apparent protection of (a)-(c)."
+        },
+        {
+          "clause_id": "clause_11_4c",
+          "risk_type": "unlimited_liability",
+          "severity": 3,
+          "span_text": "The mutual liability cap set forth in Section 11.2 shall not apply to... (c) Client's payment obligations under this Agreement, including all fees, expenses, interest, and collection costs; and (d) Client's obligations with respect to intellectual property under Sections 7, 8, and 6.3",
+          "span_section": "Section 11.4(c) and 11.4(d)",
+          "grader_note": "HARD: Section 11.2 is titled 'MUTUAL LIABILITY CAP' and appears to protect both parties equally. Section 11.4 lists exceptions. Exceptions (a) and (b) are symmetric. Exceptions (c) and (d) apply only to Client, removing the cap on Client's payment and IP obligations while Provider retains the cap. Section 11.5 makes this asymmetry explicit but is easily overlooked. Agent must read 11.2 AND 11.4 together and notice the asymmetry."
+        }
+      ]
+    },
+    {
+      "contract_id": "cloud_storage_004",
+      "difficulty": "easy",
+      "title": "Cloud Storage Service Agreement",
+      "parties": [
+        "Provider: VaultStream Data Services Inc.",
+        "Subscriber: Pinnacle Logistics Corp."
+      ],
+      "notes": "Easy difficulty — all risks are explicitly titled and standalone.",
+      "text": "CLOUD STORAGE SERVICE AGREEMENT\n\nThis Cloud Storage Service Agreement (\"Agreement\") is entered into as of the Effective Date by and between VaultStream Data Services Inc., a Nevada corporation (\"Provider\"), and the entity identified in the applicable Service Order (\"Subscriber\").\n\n1. DEFINITIONS\n\n1.1 \"Storage Service\" means Provider's cloud-based data storage, backup, and retrieval platform.\n\n1.2 \"Stored Data\" means all files, databases, records, and content uploaded by Subscriber to the Storage Service.\n\n1.3 \"Service Period\" means the initial term and any renewal periods specified in the Service Order.\n\n2. SERVICE GRANT\n\n2.1 Provider grants Subscriber a non-exclusive, non-transferable right to use the Storage Service during the Service Period for Subscriber's internal business purposes.\n\n2.2 Subscriber shall not use the Storage Service to store unlawful content or content that infringes third-party intellectual property rights.\n\n3. DATA HANDLING\n\n3.1 Subscriber retains ownership of all Stored Data.\n\n3.2 DATA LICENSE: Subscriber grants Provider an unrestricted, perpetual, irrevocable, worldwide, royalty-free license to access, copy, analyze, aggregate, de-identify, and commercially exploit Stored Data and any derivatives thereof for any purpose, including but not limited to training machine learning models, benchmarking, sale to third parties, and product development. Provider shall have no obligation to notify Subscriber of any such use.\n\n3.3 Upon termination, Provider shall make Stored Data available for download for fifteen (15) days, after which Provider may delete all Stored Data without liability.\n\n4. SERVICE TERM AND RENEWAL\n\n4.1 The initial Service Period is specified in the Service Order.\n\n4.2 AUTOMATIC RENEWAL: Unless Subscriber delivers written notice of cancellation by certified mail to Provider's registered office at least one hundred twenty (120) days before the end of the then-current Service Period, this Agreement shall automatically renew for successive two (2) year periods at Provider's then-current published rates, which may be increased without limitation. Subscriber acknowledges that email or phone notice shall not constitute valid cancellation.\n\n5. FEES\n\n5.1 UNILATERAL FEE ADJUSTMENT: Provider may adjust any fee, rate, surcharge, or pricing term under this Agreement at any time by posting updated pricing to Provider's website. Updated pricing shall take effect thirty (30) days after posting. Subscriber's continued use of the Storage Service after the effective date of any pricing change constitutes acceptance of the new pricing.\n\n6. LIMITATION OF LIABILITY\n\n6.1 IN NO EVENT SHALL PROVIDER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE, OR SPECIAL DAMAGES, OR FOR ANY DATA LOSS, WHETHER OR NOT PROVIDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.\n\n6.2 PROVIDER'S TOTAL AGGREGATE LIABILITY SHALL NOT EXCEED THE FEES PAID BY SUBSCRIBER IN THE THREE (3) MONTHS PRECEDING THE CLAIM.\n\n6.3 SUBSCRIBER LIABILITY: Notwithstanding any other provision of this Agreement, Subscriber's liability to Provider shall be unlimited and uncapped, including liability for direct, indirect, consequential, special, incidental, and punitive damages arising from Subscriber's breach of this Agreement, unauthorized use, or violation of applicable law.\n\n7. TERMINATION BY PROVIDER\n\n7.1 TERMINATION WITHOUT CAUSE: Provider may suspend or terminate Subscriber's access to the Storage Service at any time, for any reason or no reason, upon five (5) business days notice delivered through Provider's administrative portal. Provider shall have no obligation to refund prepaid fees upon such termination.\n\n8. INTELLECTUAL PROPERTY\n\n8.1 DERIVATIVE WORKS: All analytics, indices, metadata structures, search algorithms, and organizational frameworks generated by Provider's systems in connection with processing, organizing, or optimizing Stored Data (\"Derived Works\") shall be the sole and exclusive property of Provider. Subscriber irrevocably assigns to Provider all right, title, and interest in any Derived Works.\n\n9. GOVERNING LAW\n\n9.1 This Agreement shall be governed by the laws of the State of Nevada.",
+      "labels": [
+        {
+          "clause_id": "clause_3_2",
+          "risk_type": "data_ownership_ambiguity",
+          "severity": 3,
+          "span_text": "Subscriber grants Provider an unrestricted, perpetual, irrevocable, worldwide, royalty-free license to access, copy, analyze, aggregate, de-identify, and commercially exploit Stored Data and any derivatives thereof for any purpose",
+          "span_section": "Section 3.2",
+          "grader_note": "Extremely broad data license despite 3.1 retaining nominal ownership. Provider can sell subscriber data."
+        },
+        {
+          "clause_id": "clause_4_2",
+          "risk_type": "auto_renewal",
+          "severity": 2,
+          "span_text": "Unless Subscriber delivers written notice of cancellation by certified mail to Provider's registered office at least one hundred twenty (120) days before the end of the then-current Service Period, this Agreement shall automatically renew for successive two (2) year periods",
+          "span_section": "Section 4.2",
+          "grader_note": "120-day certified mail notice, 2-year renewals at unlimited rate increases."
+        },
+        {
+          "clause_id": "clause_5_1",
+          "risk_type": "unilateral_amendment",
+          "severity": 3,
+          "span_text": "Provider may adjust any fee, rate, surcharge, or pricing term under this Agreement at any time by posting updated pricing to Provider's website.",
+          "span_section": "Section 5.1",
+          "grader_note": "Unilateral fee changes with only website posting. No consent needed."
+        },
+        {
+          "clause_id": "clause_6_3",
+          "risk_type": "unlimited_liability",
+          "severity": 3,
+          "span_text": "Subscriber's liability to Provider shall be unlimited and uncapped, including liability for direct, indirect, consequential, special, incidental, and punitive damages",
+          "span_section": "Section 6.3",
+          "grader_note": "Provider capped at 3 months fees, subscriber fully uncapped. Asymmetric."
+        },
+        {
+          "clause_id": "clause_7_1",
+          "risk_type": "termination_without_cause",
+          "severity": 2,
+          "span_text": "Provider may suspend or terminate Subscriber's access to the Storage Service at any time, for any reason or no reason, upon five (5) business days notice",
+          "span_section": "Section 7.1",
+          "grader_note": "5 days is extremely short for critical data storage. No refund."
+        },
+        {
+          "clause_id": "clause_8_1",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 2,
+          "span_text": "All analytics, indices, metadata structures, search algorithms, and organizational frameworks generated by Provider's systems in connection with processing, organizing, or optimizing Stored Data (\"Derived Works\") shall be the sole and exclusive property of Provider.",
+          "span_section": "Section 8.1",
+          "grader_note": "Provider owns all derived analytical work product from subscriber's data."
+        }
+      ]
+    },
+    {
+      "contract_id": "api_platform_005",
+      "difficulty": "easy",
+      "title": "API Platform Terms of Service",
+      "parties": [
+        "Platform: DataBridge API Corp.",
+        "Developer: NovaTech Solutions LLC"
+      ],
+      "notes": "Easy difficulty — risks clearly labeled in section headings.",
+      "text": "API PLATFORM TERMS OF SERVICE\n\nThese Terms of Service (\"Terms\") govern Developer's use of the DataBridge API Platform (\"Platform\") provided by DataBridge API Corp. (\"DataBridge\"). By accessing the Platform, Developer agrees to these Terms.\n\n1. PLATFORM ACCESS\n\n1.1 DataBridge grants Developer a revocable, non-exclusive, non-transferable license to access and use the Platform APIs for Developer's applications.\n\n1.2 Developer shall comply with all rate limits, usage policies, and technical documentation.\n\n2. DEVELOPER APPLICATIONS\n\n2.1 Developer retains ownership of applications built using the Platform APIs.\n\n2.2 IP ASSIGNMENT: Developer hereby assigns to DataBridge all right, title, and interest in any plugin, extension, connector, wrapper, middleware, or integration layer that interfaces with, connects to, or extends the Platform APIs (\"Platform Integrations\"). Developer irrevocably waives all moral rights in Platform Integrations. DataBridge grants Developer a revocable, non-exclusive license to use Platform Integrations solely during the term of these Terms.\n\n3. SUBSCRIPTION AND RENEWAL\n\n3.1 Developer selects a pricing tier during registration.\n\n3.2 AUTO-RENEWAL: Each subscription period shall automatically renew for successive periods of equal length at DataBridge's then-current pricing unless Developer cancels through the Platform dashboard at least sixty (60) days prior to renewal. DataBridge reserves the right to modify pricing tiers, feature sets, and rate limits between renewal periods without prior notice.\n\n4. MODIFICATIONS TO TERMS\n\n4.1 UNILATERAL AMENDMENT: DataBridge may modify these Terms at any time by posting revised Terms to the Platform. Continued use of the Platform after posting constitutes Developer's irrevocable acceptance of all modifications. DataBridge has no obligation to notify Developer of changes. Developer is responsible for reviewing these Terms periodically.\n\n5. INDEMNIFICATION\n\n5.1 Developer shall indemnify and hold harmless DataBridge from any claims arising from Developer's applications, data processing, end-user complaints, regulatory actions, or breach of these Terms. This indemnification obligation is unlimited and not subject to any liability cap.\n\n5.2 DataBridge shall indemnify Developer solely against third-party IP infringement claims related to the core Platform APIs as delivered.\n\n6. LIABILITY\n\n6.1 DATABRIDGE'S TOTAL LIABILITY SHALL NOT EXCEED THE FEES PAID BY DEVELOPER IN THE PRECEDING THIRTY (30) DAYS.\n\n6.2 Developer's liability to DataBridge under these Terms shall be unlimited.\n\n7. DATA USAGE\n\n7.1 DataBridge may collect, analyze, and commercially use all API call data, request payloads, response patterns, and usage telemetry (\"Platform Data\") without restriction. Developer grants DataBridge an irrevocable license to use Platform Data for any purpose including sale to third parties.\n\n8. TERMINATION\n\n8.1 TERMINATION WITHOUT CAUSE: DataBridge may terminate Developer's access immediately without notice for any reason. Upon termination, all licenses granted to Developer are immediately revoked.\n\n9. GOVERNING LAW\n\n9.1 These Terms shall be governed by the laws of the State of California.",
+      "labels": [
+        {
+          "clause_id": "clause_2_2",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "Developer hereby assigns to DataBridge all right, title, and interest in any plugin, extension, connector, wrapper, middleware, or integration layer that interfaces with, connects to, or extends the Platform APIs",
+          "span_section": "Section 2.2",
+          "grader_note": "Any integration work built by developer is assigned to DataBridge."
+        },
+        {
+          "clause_id": "clause_3_2",
+          "risk_type": "auto_renewal",
+          "severity": 2,
+          "span_text": "Each subscription period shall automatically renew for successive periods of equal length at DataBridge's then-current pricing unless Developer cancels through the Platform dashboard at least sixty (60) days prior to renewal.",
+          "span_section": "Section 3.2",
+          "grader_note": "60-day notice window. Pricing and features can change without notice between renewals."
+        },
+        {
+          "clause_id": "clause_4_1",
+          "risk_type": "unilateral_amendment",
+          "severity": 3,
+          "span_text": "DataBridge may modify these Terms at any time by posting revised Terms to the Platform. Continued use of the Platform after posting constitutes Developer's irrevocable acceptance of all modifications.",
+          "span_section": "Section 4.1",
+          "grader_note": "No notice, no consent, immediate effect."
+        },
+        {
+          "clause_id": "clause_5_1",
+          "risk_type": "indemnification_asymmetry",
+          "severity": 2,
+          "span_text": "Developer shall indemnify and hold harmless DataBridge from any claims arising from Developer's applications, data processing, end-user complaints, regulatory actions, or breach of these Terms. This indemnification obligation is unlimited",
+          "span_section": "Section 5.1",
+          "grader_note": "Developer's indemnity is unlimited and covers everything. DataBridge's indemnity (5.2) is narrow."
+        },
+        {
+          "clause_id": "clause_6_2",
+          "risk_type": "unlimited_liability",
+          "severity": 3,
+          "span_text": "Developer's liability to DataBridge under these Terms shall be unlimited.",
+          "span_section": "Section 6.2",
+          "grader_note": "DataBridge capped at 30 days fees. Developer unlimited."
+        },
+        {
+          "clause_id": "clause_7_1",
+          "risk_type": "data_ownership_ambiguity",
+          "severity": 2,
+          "span_text": "DataBridge may collect, analyze, and commercially use all API call data, request payloads, response patterns, and usage telemetry (\"Platform Data\") without restriction.",
+          "span_section": "Section 7.1",
+          "grader_note": "Request payloads may contain sensitive data. Broad commercial use rights."
+        },
+        {
+          "clause_id": "clause_8_1",
+          "risk_type": "termination_without_cause",
+          "severity": 3,
+          "span_text": "DataBridge may terminate Developer's access immediately without notice for any reason.",
+          "span_section": "Section 8.1",
+          "grader_note": "Immediate termination, no notice period at all."
+        }
+      ]
+    },
+    {
+      "contract_id": "data_proc_006",
+      "difficulty": "medium",
+      "title": "Data Processing and Analytics Services Agreement",
+      "parties": [
+        "Processor: Quantis Data Analytics Ltd.",
+        "Controller: Meridian Healthcare Group"
+      ],
+      "notes": "Medium — risks require connecting definitions to operative clauses. The indemnity trap requires reading Schedules references. IP overreach is hidden in 'quality assurance' language.",
+      "text": "DATA PROCESSING AND ANALYTICS SERVICES AGREEMENT\n\nThis Data Processing and Analytics Services Agreement (\"Agreement\") is made by and between Quantis Data Analytics Ltd., a UK company (\"Processor\"), and Meridian Healthcare Group, a Delaware corporation (\"Controller\").\n\n1. DEFINITIONS\n\n1.1 \"Controller Data\" means personal data and business records provided by Controller to Processor for processing.\n\n1.2 \"Analytical Outputs\" means any report, model, insight, benchmark, score, prediction, classification, cluster analysis, or statistical derivative produced by Processor through the application of its proprietary algorithms and methodologies to any data, including Controller Data, whether processed in isolation or in combination with data from other sources.\n\n1.3 \"Processing Fee Period\" means each consecutive twelve-month period beginning on the Effective Date. At the conclusion of each Processing Fee Period, a new Processing Fee Period shall commence automatically under the Continuous Service Commitment described in Section 4.3.\n\n1.4 \"Material Processing Change\" means any modification to Processor's algorithms, infrastructure, data handling procedures, subprocessor relationships, or pricing that Processor determines, in its sole discretion, is material.\n\n2. SERVICES\n\n2.1 Processor shall process Controller Data in accordance with Controller's documented instructions and applicable data protection legislation.\n\n2.2 Processor shall implement appropriate technical and organizational measures to protect Controller Data.\n\n2.3 Quality Assurance Program. To ensure the highest quality of analytical services, Processor shall continuously monitor, evaluate, and refine its algorithms and models. As part of this quality assurance program, Processor shall retain copies of Controller Data and all intermediate processing states for the purpose of algorithm validation, model training, performance benchmarking, and service improvement. Controller acknowledges that Processor's quality assurance activities are essential to service delivery and consents to such retention and use.\n\n3. INTELLECTUAL PROPERTY\n\n3.1 Controller retains all rights in Controller Data.\n\n3.2 Analytical Outputs. All Analytical Outputs, as defined in Section 1.2, regardless of whether they are generated primarily from Controller Data or incorporate Controller-specific configurations, parameters, or domain knowledge contributed by Controller personnel, shall be the exclusive property of Processor. Controller hereby assigns to Processor any interest Controller may have in Analytical Outputs. For clarity, the broad definition of Analytical Outputs in Section 1.2 encompasses any work product that results from processing activities, including custom reports commissioned and paid for by Controller.\n\n4. TERM\n\n4.1 This Agreement commences on the Effective Date and continues for an initial period of twenty-four (24) months.\n\n4.2 Either party may terminate for material breach upon ninety (90) days written notice if the breach remains uncured.\n\n4.3 Continuous Service Commitment. To ensure uninterrupted data processing capabilities and to protect Controller's operational continuity, upon expiration of the initial period and each subsequent Processing Fee Period as defined in Section 1.3, this Agreement shall continue automatically. Controller may elect to conclude the Agreement by submitting a formal termination request through Processor's client governance portal, which must be approved by Processor's client retention committee. Processor shall respond to termination requests within sixty (60) business days. Fees during any continuation period shall be subject to Processor's then-current rate card, as adjusted pursuant to Material Processing Changes under Section 1.4.\n\n5. INDEMNIFICATION\n\n5.1 Processor shall indemnify Controller against third-party claims that Processor's platform infringes valid intellectual property rights, subject to the limitations in Schedule E (which caps Processor's indemnity at one month of processing fees).\n\n5.2 Controller shall indemnify Processor against all claims, liabilities, and expenses arising from or related to Controller Data, Controller's use of Analytical Outputs, Controller's failure to obtain required data subject consents, regulatory fines imposed on Processor in connection with Controller Data, and any downstream use of Analytical Outputs by Controller's patients, partners, or affiliates. Controller's indemnification obligations under this Section are not subject to any cap or limitation, notwithstanding any general limitation of liability in this Agreement or any Schedule.\n\n6. LIABILITY\n\n6.1 Processor's aggregate liability shall not exceed the processing fees paid by Controller in the six (6) months immediately preceding the claim.\n\n6.2 Neither party shall be liable for indirect or consequential damages.\n\n7. DATA RETENTION\n\n7.1 Upon termination, Processor shall return or delete Controller Data within ninety (90) days, subject to Processor's right to retain data required for the quality assurance program described in Section 2.3 and for compliance with legal obligations. Processor may retain anonymized and aggregated versions of Controller Data indefinitely.\n\n8. GOVERNING LAW\n\n8.1 This Agreement shall be governed by the laws of England and Wales.",
+      "labels": [
+        {
+          "clause_id": "clause_1_2",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "\"Analytical Outputs\" means any report, model, insight, benchmark, score, prediction, classification, cluster analysis, or statistical derivative produced by Processor through the application of its proprietary algorithms and methodologies to any data, including Controller Data",
+          "span_section": "Section 1.2 (definition applied in Section 3.2)",
+          "grader_note": "The definition is so broad that custom paid-for reports are captured. Must cross-reference Section 3.2 to see the full trap."
+        },
+        {
+          "clause_id": "clause_2_3",
+          "risk_type": "data_ownership_ambiguity",
+          "severity": 2,
+          "span_text": "Processor shall retain copies of Controller Data and all intermediate processing states for the purpose of algorithm validation, model training, performance benchmarking, and service improvement.",
+          "span_section": "Section 2.3",
+          "grader_note": "Hidden under 'Quality Assurance'. Healthcare data retained indefinitely for training. See also Section 7.1."
+        },
+        {
+          "clause_id": "clause_4_3",
+          "risk_type": "auto_renewal",
+          "severity": 3,
+          "span_text": "upon expiration of the initial period and each subsequent Processing Fee Period as defined in Section 1.3, this Agreement shall continue automatically. Controller may elect to conclude the Agreement by submitting a formal termination request through Processor's client governance portal, which must be approved by Processor's client retention committee.",
+          "span_section": "Section 4.3 (requires reading Section 1.3)",
+          "grader_note": "Auto-continuation hidden under 'Continuous Service Commitment'. Exit requires portal submission AND committee approval within 60 business days."
+        },
+        {
+          "clause_id": "clause_5_2",
+          "risk_type": "indemnification_asymmetry",
+          "severity": 3,
+          "span_text": "Controller shall indemnify Processor against all claims, liabilities, and expenses arising from or related to Controller Data, Controller's use of Analytical Outputs, Controller's failure to obtain required data subject consents, regulatory fines imposed on Processor in connection with Controller Data",
+          "span_section": "Section 5.2",
+          "grader_note": "Controller indemnity is unlimited (explicit override of liability caps). Processor indemnity capped at 1 month fees per Schedule E. Massive asymmetry."
+        }
+      ]
+    },
+    {
+      "contract_id": "tech_partner_007",
+      "difficulty": "medium",
+      "title": "Strategic Technology Partnership Agreement",
+      "parties": [
+        "Platform Partner: Synapse AI Systems Corp.",
+        "Integration Partner: Coastal Robotics Inc."
+      ],
+      "notes": "Medium — risks buried in reciprocal-looking clauses. The 'mutual' IP sharing has asymmetric commercialization rights. Termination is technically mutual but has asymmetric consequences.",
+      "text": "STRATEGIC TECHNOLOGY PARTNERSHIP AGREEMENT\n\nThis Strategic Technology Partnership Agreement (\"Agreement\") is entered into by and between Synapse AI Systems Corp. (\"Platform Partner\") and Coastal Robotics Inc. (\"Integration Partner\").\n\n1. DEFINITIONS\n\n1.1 \"Integration Work\" means any software, firmware, driver, adapter, protocol handler, or configuration developed by Integration Partner to enable interoperability between Integration Partner's products and Platform Partner's systems.\n\n1.2 \"Joint Development Output\" means any technology, methodology, algorithm, or process arising from collaborative activities under this Agreement, whether contributed predominantly by one party or jointly.\n\n1.3 \"Applicable Renewal Fee\" means, for each Renewal Term, the greater of (a) one hundred twenty-five percent (125%) of the fee applicable to the immediately preceding term, or (b) Platform Partner's then-current standard partnership fee for Integration Partner's usage tier.\n\n2. PARTNERSHIP SCOPE\n\n2.1 The parties shall collaborate on technology integration projects as described in project plans agreed from time to time.\n\n2.2 Each party shall designate a partnership manager to coordinate activities.\n\n3. INTELLECTUAL PROPERTY\n\n3.1 Background IP. Each party retains all rights in its pre-existing intellectual property.\n\n3.2 Integration Work. All Integration Work, regardless of whether it was developed solely by Integration Partner using Integration Partner's resources, shall be jointly owned by the parties. However, Platform Partner shall have the exclusive right to distribute, sublicense, and commercialize all Integration Work through Platform Partner's marketplace, partner ecosystem, and any other channel, without compensation to Integration Partner beyond the partnership benefits described in this Agreement.\n\n3.3 Joint Development Output. All Joint Development Output shall be owned exclusively by Platform Partner. Integration Partner hereby assigns all right, title, and interest in Joint Development Output to Platform Partner and shall execute such documents as Platform Partner may request to perfect such assignment.\n\n4. TERM AND RENEWAL\n\n4.1 The initial partnership term is three (3) years from the Effective Date.\n\n4.2 Renewal. Upon expiration of the initial term or any Renewal Term, this Agreement shall automatically renew for consecutive two (2) year Renewal Terms at the Applicable Renewal Fee defined in Section 1.3, unless a party provides written notice of non-renewal at least one hundred eighty (180) days before expiration. For the avoidance of doubt, the 180-day notice period runs from the date of receipt of notice by the other party, not the date of sending.\n\n5. TERMINATION CONSEQUENCES\n\n5.1 Upon termination or expiration, Integration Partner's license to use Platform Partner's APIs and systems shall immediately cease.\n\n5.2 Integration Partner shall cease all distribution of Integration Work within thirty (30) days of termination and shall transfer to Platform Partner all source code, documentation, and deployment materials for Integration Work.\n\n5.3 Platform Partner's rights to Integration Work and Joint Development Output survive termination and are perpetual.\n\n6. INDEMNIFICATION\n\n6.1 Integration Partner shall indemnify Platform Partner against all claims arising from Integration Work, Integration Partner's products, or Integration Partner's breach of this Agreement.\n\n6.2 Platform Partner shall indemnify Integration Partner against third-party claims that Platform Partner's core platform infringes valid US patents, limited to the fees paid by Integration Partner in the twelve (12) months preceding the claim.\n\n7. LIABILITY\n\n7.1 NEITHER PARTY'S LIABILITY SHALL EXCEED THE TOTAL FEES PAID OR PAYABLE UNDER THIS AGREEMENT IN THE TWELVE MONTHS PRECEDING THE CLAIM, EXCEPT THAT INTEGRATION PARTNER'S LIABILITY FOR BREACHES OF SECTIONS 3 AND 5 SHALL BE UNLIMITED.\n\n8. GOVERNING LAW\n\n8.1 This Agreement shall be governed by the laws of the State of Massachusetts.",
+      "labels": [
+        {
+          "clause_id": "clause_3_2",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "All Integration Work, regardless of whether it was developed solely by Integration Partner using Integration Partner's resources, shall be jointly owned by the parties. However, Platform Partner shall have the exclusive right to distribute, sublicense, and commercialize all Integration Work",
+          "span_section": "Section 3.2",
+          "grader_note": "'Jointly owned' but Platform Partner gets exclusive commercialization. Joint ownership is economically worthless for Integration Partner."
+        },
+        {
+          "clause_id": "clause_3_3",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "All Joint Development Output shall be owned exclusively by Platform Partner. Integration Partner hereby assigns all right, title, and interest in Joint Development Output to Platform Partner",
+          "span_section": "Section 3.3",
+          "grader_note": "Full assignment of collaborative work product. Combined with broad Section 1.2 definition, captures everything."
+        },
+        {
+          "clause_id": "clause_4_2",
+          "risk_type": "auto_renewal",
+          "severity": 2,
+          "span_text": "this Agreement shall automatically renew for consecutive two (2) year Renewal Terms at the Applicable Renewal Fee defined in Section 1.3, unless a party provides written notice of non-renewal at least one hundred eighty (180) days before expiration",
+          "span_section": "Section 4.2 (requires reading Section 1.3)",
+          "grader_note": "180-day notice. Fee is 125% of prior or current list price, whichever is higher. Must cross-reference Section 1.3."
+        },
+        {
+          "clause_id": "clause_7_1",
+          "risk_type": "unlimited_liability",
+          "severity": 2,
+          "span_text": "INTEGRATION PARTNER'S LIABILITY FOR BREACHES OF SECTIONS 3 AND 5 SHALL BE UNLIMITED",
+          "span_section": "Section 7.1",
+          "grader_note": "Appears mutual but exception applies only to Integration Partner. IP and termination breaches are uncapped."
+        }
+      ]
+    },
+    {
+      "contract_id": "jv_tech_008",
+      "difficulty": "hard",
+      "title": "Joint Venture — Technology Services Agreement",
+      "parties": [
+        "Lead Partner: Apex Digital Infrastructure Inc.",
+        "Venture Partner: TerraNova Energy Solutions Ltd."
+      ],
+      "notes": "Hard — risks hidden inside protective language. 'Knowledge sharing' clause is actually a data extraction mechanism. 'Balanced governance' has a casting vote that removes balance. Equal exit rights have asymmetric financial consequences.",
+      "text": "JOINT VENTURE — TECHNOLOGY SERVICES AGREEMENT\n\nThis Joint Venture Technology Services Agreement (\"Agreement\") is made by and between Apex Digital Infrastructure Inc. (\"Lead Partner\") and TerraNova Energy Solutions Ltd. (\"Venture Partner\"), collectively the \"JV Parties.\"\n\n1. DEFINITIONS\n\n1.1 \"JV Entity\" means the joint venture entity to be formed by the JV Parties for the purposes described herein.\n\n1.2 \"Contributed Technology\" means technology, data, models, algorithms, trade secrets, and know-how contributed by either party to the JV Entity.\n\n1.3 \"Enhanced Technology\" means any adaptation, improvement, modification, enhancement, or derivative of Contributed Technology that arises in the course of JV activities, regardless of which party's personnel conceived or developed such adaptation.\n\n1.4 \"Operational Knowledge Base\" means the accumulated dataset comprising technical specifications, performance metrics, operational parameters, process configurations, failure modes, optimization strategies, and domain expertise captured through the Knowledge Sharing Protocol in Section 5.\n\n2. PURPOSE\n\n2.1 The JV Parties establish this venture to jointly develop and commercialize integrated digital infrastructure solutions for the energy sector.\n\n3. GOVERNANCE\n\n3.1 The JV Entity shall be governed by a Management Committee consisting of three (3) representatives from each JV Party.\n\n3.2 Balanced Decision-Making. The Management Committee shall make decisions by simple majority vote. In the event of a tied vote on any matter, including but not limited to strategic direction, budget allocation, personnel decisions, IP licensing, technology deployment, and commercialization strategy, Lead Partner's Chief Technology Officer (or designee) shall cast the deciding vote. The JV Parties agree that this tie-breaking mechanism is essential to operational efficiency and does not constitute control by Lead Partner.\n\n4. TERM AND CONTINUITY\n\n4.1 This Agreement has an initial term of five (5) years from formation of the JV Entity.\n\n4.2 Continuity Safeguard. To protect both parties' investment in the venture and the accumulated Operational Knowledge Base, and to ensure that neither party can unilaterally disrupt ongoing client engagements, this Agreement shall continue beyond the initial term unless both JV Parties jointly execute a written wind-down agreement filed with the JV Entity's registered agent. In the absence of a jointly executed wind-down agreement, the Agreement shall continue in full force for successive three (3) year periods. During any continuation period, fees and cost allocations shall be adjusted to Lead Partner's standard intercompany transfer pricing, as determined by Lead Partner.\n\n5. KNOWLEDGE SHARING PROTOCOL\n\n5.1 In furtherance of the venture's objectives and to maximize the value created by the partnership, each JV Party shall contribute to the Operational Knowledge Base by providing comprehensive documentation of its proprietary methods, technical processes, domain expertise, and performance data.\n\n5.2 The Operational Knowledge Base shall be maintained on Lead Partner's secure infrastructure. Lead Partner shall serve as custodian with full administrative access.\n\n5.3 Permitted Uses. The Operational Knowledge Base may be used by the JV Entity for venture activities. Additionally, Lead Partner, in its capacity as custodian and in recognition of its infrastructure investment, shall have the right to use, analyze, and incorporate insights from the Operational Knowledge Base into Lead Partner's own products, services, and offerings outside the scope of the JV Entity, provided that Lead Partner does not directly disclose Venture Partner's raw documentation to third parties. For clarity, derived insights, models, or methodologies extracted from the Operational Knowledge Base are not considered \"raw documentation.\"\n\n6. INTELLECTUAL PROPERTY\n\n6.1 Each party retains all rights in its pre-existing Contributed Technology.\n\n6.2 Enhanced Technology. The JV Parties shall jointly own all Enhanced Technology. Neither party shall license, sublicense, assign, or transfer its interest in Enhanced Technology to any third party without the prior written consent of the other party.\n\n6.3 Protective Commercialization Rights. Notwithstanding Section 6.2, to ensure efficient go-to-market execution and to prevent commercialization deadlock, Lead Partner is hereby granted the exclusive, irrevocable, worldwide right to commercialize, sublicense, and exploit all Enhanced Technology through any channel and in any manner Lead Partner deems appropriate, without consent of, accounting to, or compensation to Venture Partner. Venture Partner's joint ownership interest under Section 6.2 shall not entitle Venture Partner to any revenue or royalties from Lead Partner's commercialization activities.\n\n7. EXIT AND WIND-DOWN\n\n7.1 Exit Rights. Either JV Party may initiate exit from the venture by delivering written notice. Upon exit by Venture Partner, Venture Partner shall transfer to the JV Entity (controlled by Lead Partner) all of Venture Partner's interest in Enhanced Technology and the Operational Knowledge Base. Venture Partner shall receive fair market value for its JV Entity equity interest as determined by an independent valuator selected by Lead Partner.\n\n7.2 Lead Partner's exit shall be governed by mutual agreement of the JV Parties.\n\n8. INDEMNIFICATION\n\n8.1 Each JV Party shall indemnify the other against third-party claims arising from that party's breach of this Agreement.\n\n8.2 Notwithstanding Section 8.1, Venture Partner shall additionally indemnify Lead Partner against any claims related to Venture Partner's Contributed Technology, the Operational Knowledge Base to the extent derived from Venture Partner's contributions, and any Enhanced Technology deployed by the JV Entity.\n\n9. LIMITATION OF LIABILITY\n\n9.1 Each party's aggregate liability under this Agreement shall not exceed the greater of (i) that party's total capital contribution to the JV Entity or (ii) five million dollars ($5,000,000), except that Venture Partner's liability for breaches of Sections 5, 6, and 7 and Venture Partner's indemnification obligations under Section 8.2 shall not be subject to any cap.\n\n10. GOVERNING LAW\n\n10.1 This Agreement shall be governed by the laws of the State of Texas.",
+      "labels": [
+        {
+          "clause_id": "clause_4_2",
+          "risk_type": "auto_renewal",
+          "severity": 3,
+          "span_text": "this Agreement shall continue beyond the initial term unless both JV Parties jointly execute a written wind-down agreement filed with the JV Entity's registered agent. In the absence of a jointly executed wind-down agreement, the Agreement shall continue in full force for successive three (3) year periods.",
+          "span_section": "Section 4.2",
+          "grader_note": "HARD: Titled 'Continuity Safeguard' — sounds protective. Exit requires BOTH parties to agree on wind-down, meaning Lead Partner can unilaterally block exit. Fees reset to Lead Partner's transfer pricing."
+        },
+        {
+          "clause_id": "clause_5_3",
+          "risk_type": "data_ownership_ambiguity",
+          "severity": 3,
+          "span_text": "Lead Partner, in its capacity as custodian and in recognition of its infrastructure investment, shall have the right to use, analyze, and incorporate insights from the Operational Knowledge Base into Lead Partner's own products, services, and offerings outside the scope of the JV Entity",
+          "span_section": "Section 5.3",
+          "grader_note": "HARD: 'Knowledge Sharing Protocol' sounds collaborative. Actually a mechanism for Lead Partner to extract Venture Partner's trade secrets. 'Derived insights' carve-out means everything can be used."
+        },
+        {
+          "clause_id": "clause_6_3",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "Notwithstanding Section 6.2, to ensure efficient go-to-market execution and to prevent commercialization deadlock, Lead Partner is hereby granted the exclusive, irrevocable, worldwide right to commercialize, sublicense, and exploit all Enhanced Technology",
+          "span_section": "Section 6.3",
+          "grader_note": "HARD: Section 6.2 creates fair-looking joint ownership. Section 6.3 begins with 'Notwithstanding' and grants Lead Partner exclusive commercial rights, making joint ownership meaningless."
+        },
+        {
+          "clause_id": "clause_9_1",
+          "risk_type": "unlimited_liability",
+          "severity": 3,
+          "span_text": "Venture Partner's liability for breaches of Sections 5, 6, and 7 and Venture Partner's indemnification obligations under Section 8.2 shall not be subject to any cap.",
+          "span_section": "Section 9.1",
+          "grader_note": "HARD: Appears as a mutual liability provision but exception only applies to Venture Partner. Covers IP, knowledge sharing, and exit — essentially all major obligations."
+        }
+      ]
+    },
+    {
+      "contract_id": "managed_infra_009",
+      "difficulty": "hard",
+      "title": "Managed Infrastructure and Digital Transformation Services Agreement",
+      "parties": [
+        "Service Provider: Fortress Cloud Corp.",
+        "Enterprise Client: Polaris Manufacturing Group"
+      ],
+      "notes": "Hard — all four risks disguised as client protections. 'Innovation protection' is actually IP extraction. 'Financial protection' clause creates unlimited liability. The SLA 'guarantee' actually limits remedies to service credits.",
+      "text": "MANAGED INFRASTRUCTURE AND DIGITAL TRANSFORMATION SERVICES AGREEMENT\n\nThis Managed Infrastructure and Digital Transformation Services Agreement (\"Agreement\") is entered into by Fortress Cloud Corp. (\"Service Provider\") and Polaris Manufacturing Group (\"Enterprise Client\").\n\n1. DEFINITIONS\n\n1.1 \"Managed Environment\" means the cloud infrastructure, network services, security layer, and application hosting environment operated by Service Provider for Enterprise Client.\n\n1.2 \"Transformation Deliverables\" means any software, architecture design, migration plan, automation script, workflow configuration, security policy, or operational runbook developed in connection with Enterprise Client's digital transformation program.\n\n1.3 \"Innovation Artifacts\" means any invention, process improvement, optimization technique, novel configuration, architecture pattern, or best practice that emerges from Service Provider's management of the Managed Environment, whether conceived by Service Provider's personnel, Enterprise Client's personnel, or jointly.\n\n1.4 \"Continuity Assurance Period\" means the period described in Section 4.3 during which services continue to protect Enterprise Client against operational disruption.\n\n2. SERVICES\n\n2.1 Service Provider shall provide managed infrastructure services, migration support, and digital transformation consulting as described in applicable Statements of Work.\n\n2.2 Service Level Guarantee. Service Provider guarantees a monthly uptime percentage of 99.9% for the Managed Environment. This guarantee reflects Service Provider's commitment to operational excellence and Enterprise Client's mission-critical requirements. Enterprise Client's sole and exclusive remedy for any failure to meet the guaranteed uptime is service credits as calculated in Schedule F, capped at ten percent (10%) of the monthly fee for the affected service. Enterprise Client hereby waives all other remedies, claims, and causes of action, whether in contract, tort, or otherwise, arising from service interruptions, downtime, data unavailability, or performance degradation.\n\n3. INTELLECTUAL PROPERTY\n\n3.1 Service Provider retains all rights in its pre-existing technology, tools, and methodologies.\n\n3.2 Transformation Deliverables. Transformation Deliverables created pursuant to a Statement of Work shall be owned by Enterprise Client upon payment in full, subject to Service Provider's retained license in Section 3.4.\n\n3.3 Innovation Protection Clause. To protect and preserve innovations arising from the parties' engagement and to ensure proper stewardship of novel approaches, all Innovation Artifacts as defined in Section 1.3 shall be owned exclusively by Service Provider. Enterprise Client acknowledges that Service Provider's management of the Managed Environment provides the conditions and expertise from which Innovation Artifacts emerge, and that Service Provider's ownership ensures responsible development and broad industry benefit. Enterprise Client hereby assigns to Service Provider all right, title, and interest in Innovation Artifacts and waives any claim to ownership or compensation.\n\n3.4 Service Provider retains a perpetual, irrevocable, royalty-free license to use, modify, and incorporate any Transformation Deliverable into Service Provider's products and services for other customers.\n\n4. TERM\n\n4.1 This Agreement has an initial term of three (3) years.\n\n4.2 Either party may terminate for material breach upon ninety (90) days written notice.\n\n4.3 Continuity Assurance. To safeguard Enterprise Client against the significant operational risk associated with infrastructure migration and to protect the stability of Enterprise Client's Managed Environment, upon expiration of the initial term or any renewal term, the Agreement shall automatically enter a Continuity Assurance Period of twenty-four (24) months unless Enterprise Client has completed a Certified Transition Process. A Certified Transition Process requires: (a) Enterprise Client's submission of a transition plan to Service Provider no fewer than twelve (12) months prior to the desired termination date; (b) Service Provider's written certification that the transition plan meets Service Provider's technical adequacy standards; (c) Enterprise Client's payment of a transition management fee equal to six (6) months of the then-current service fees; and (d) successful completion of all migration activities to Service Provider's satisfaction. Fees during the Continuity Assurance Period shall be at Service Provider's then-current standard rates.\n\n5. FINANCIAL PROTECTION\n\n5.1 Mutual Liability Framework. To provide a balanced and protective liability framework for both parties:\n\n(a) Service Provider's aggregate liability for all claims under this Agreement shall not exceed the fees paid by Enterprise Client in the six (6) months preceding the claim;\n\n(b) Enterprise Client's aggregate liability for claims arising from breach of Sections 3, 4, and 6 of this Agreement, including but not limited to intellectual property breaches, unauthorized termination, premature migration, transition fee defaults, and data handling violations, shall not be subject to any cap or limitation;\n\n(c) For all other claims by Service Provider against Enterprise Client, Enterprise Client's liability shall not exceed two (2) times the annual fees under this Agreement;\n\n(d) The parties acknowledge that this framework reflects the asymmetric risk profile of managed infrastructure services, where Service Provider bears operational risk and Enterprise Client bears compliance and IP risk.\n\n6. DATA\n\n6.1 Enterprise Client retains ownership of all raw data stored in the Managed Environment.\n\n6.2 Service Provider may collect and process operational telemetry, performance data, configuration metadata, and usage patterns from the Managed Environment (\"Service Intelligence Data\"). Service Provider owns all Service Intelligence Data and may use it for any purpose including training, benchmarking, and sale to third parties.\n\n7. GOVERNING LAW\n\n7.1 This Agreement shall be governed by the laws of the State of Virginia.",
+      "labels": [
+        {
+          "clause_id": "clause_3_3",
+          "risk_type": "ip_assignment_overreach",
+          "severity": 3,
+          "span_text": "all Innovation Artifacts as defined in Section 1.3 shall be owned exclusively by Service Provider. Enterprise Client acknowledges that Service Provider's management of the Managed Environment provides the conditions and expertise from which Innovation Artifacts emerge",
+          "span_section": "Section 3.3",
+          "grader_note": "HARD: Titled 'Innovation Protection Clause' — sounds like it protects innovation. Actually assigns all process improvements and novel configs to Service Provider. Definition in 1.3 is extremely broad."
+        },
+        {
+          "clause_id": "clause_4_3",
+          "risk_type": "auto_renewal",
+          "severity": 3,
+          "span_text": "upon expiration of the initial term or any renewal term, the Agreement shall automatically enter a Continuity Assurance Period of twenty-four (24) months unless Enterprise Client has completed a Certified Transition Process",
+          "span_section": "Section 4.3",
+          "grader_note": "HARD: Titled 'Continuity Assurance' — sounds protective for the client. Exit requires 12-month advance plan, Service Provider certification, 6-month fee payment, and migration to SP's satisfaction. Almost impossible to exit."
+        },
+        {
+          "clause_id": "clause_5_1b",
+          "risk_type": "unlimited_liability",
+          "severity": 3,
+          "span_text": "Enterprise Client's aggregate liability for claims arising from breach of Sections 3, 4, and 6 of this Agreement, including but not limited to intellectual property breaches, unauthorized termination, premature migration, transition fee defaults, and data handling violations, shall not be subject to any cap or limitation",
+          "span_section": "Section 5.1(b)",
+          "grader_note": "HARD: Titled 'Financial Protection' and 'Mutual Liability Framework'. Section 5.1(d) even explains the asymmetry is intentional. SP capped at 6 months; client uncapped for IP, termination, and data."
+        },
+        {
+          "clause_id": "clause_6_2",
+          "risk_type": "data_ownership_ambiguity",
+          "severity": 2,
+          "span_text": "Service Provider may collect and process operational telemetry, performance data, configuration metadata, and usage patterns from the Managed Environment (\"Service Intelligence Data\"). Service Provider owns all Service Intelligence Data and may use it for any purpose including training, benchmarking, and sale to third parties.",
+          "span_section": "Section 6.2",
+          "grader_note": "Configuration metadata and usage patterns from a manufacturing company's infrastructure could reveal trade secrets about production processes."
+        }
+      ]
+    }
+  ]
+}

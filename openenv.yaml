@@ -1,0 +1,10 @@
+name: contract-risk-env
+version: "1.0.0"
+description: >
+  RL environment for legal contract risk clause detection.
+  Agent reads synthetic contracts and flags risky clauses.
+  Three tasks: easy (explicit risks), medium (cross-reference traps),
+  hard (protective-looking clauses with negating exceptions).
+  Grader is deterministic precision/recall/F1 against ground-truth labels.
+tags: [openenv, legal, nlp, real-world, risk-detection]
+entry_point: contract_risk_env.server.app:app
