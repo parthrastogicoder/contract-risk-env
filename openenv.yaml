@@ -7,4 +7,4 @@ description: >
   hard (protective-looking clauses with negating exceptions).
   Grader is deterministic precision/recall/F1 against ground-truth labels.
 tags: [openenv, legal, nlp, real-world, risk-detection]
-entry_point: contract_risk_env.server.app:app
+entry_point: server.app:app

@@ -45,7 +45,7 @@ from contract_risk_env.client import ContractRiskEnv
 from contract_risk_env.models import ContractAction, ClauseFlag
 
 # ── Environment variables (competition-mandated) ────────────────────────────
-IMAGE_NAME = os.getenv("LOCAL_IMAGE_NAME")
+IMAGE_NAME = os.getenv("IMAGE_NAME") or os.getenv("LOCAL_IMAGE_NAME")
 API_KEY = os.getenv("API_KEY") or os.getenv("HF_TOKEN")
 
 API_BASE_URL = os.getenv("API_BASE_URL") or "https://router.huggingface.co/v1"
@@ -200,12 +200,7 @@ async def run_episode(env, llm_client: OpenAI, task_id: str) -> float:
 async def main() -> None:
     llm_client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
 
-    # Connect to environment — prefer docker image if set, else use base URL
-    if IMAGE_NAME:
-        env = await ContractRiskEnv.from_docker_image(IMAGE_NAME)
-    else:
-        env_url = os.getenv("ENV_BASE_URL", "http://localhost:8000")
-        env = ContractRiskEnv(base_url=env_url)
+    env = await ContractRiskEnv.from_docker_image(IMAGE_NAME)
 
     try:
         scores = []
