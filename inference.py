@@ -208,7 +208,6 @@ async def main() -> None:
     llm_client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
 
     # Connect to environment — try strategies in order
-    env = None
     if IMAGE_NAME:
         print(f"[DEBUG] Strategy: from_docker_image({IMAGE_NAME})", flush=True)
         env = await ContractRiskEnv.from_docker_image(IMAGE_NAME)
@@ -246,4 +245,6 @@ if __name__ == "__main__":
             print(f"[START] task={task_id} env={BENCHMARK} model={MODEL_NAME}", flush=True)
             print(f"[STEP] step=1 action=error reward=0.01 done=true error={err_str}", flush=True)
             print(f"[END] success=false steps=1 score=0.01 rewards=0.01", flush=True)
+        # re-raise to ensure non-zero exit code and show traceback in validator log
+        raise
 
