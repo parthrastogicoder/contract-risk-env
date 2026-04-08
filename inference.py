@@ -48,8 +48,8 @@ from contract_risk_env.models import ContractAction, ClauseFlag
 IMAGE_NAME = os.getenv("LOCAL_IMAGE_NAME")
 API_KEY = os.getenv("API_KEY") or os.getenv("HF_TOKEN")
 
-API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
-MODEL_NAME = os.getenv("MODEL_NAME", "gpt-4o")
+API_BASE_URL = os.getenv("API_BASE_URL") or "https://router.huggingface.co/v1"
+MODEL_NAME = os.getenv("MODEL_NAME") or "gpt-4o"
 
 BENCHMARK = "contract_risk_env"
 TASKS = ["easy", "medium", "hard"]
@@ -121,9 +121,10 @@ def call_llm(client: OpenAI, contract_text: str) -> dict:
             temperature=TEMPERATURE,
             max_tokens=MAX_TOKENS,
             stream=False,
-            response_format={"type": "json_object"},
         )
         raw = (completion.choices[0].message.content or "").strip()
+        # Clean markdown fences in case universal model emits them without JSON mode
+        raw = raw.replace("```json", "").replace("```", "").strip()
         return json.loads(raw)
     except Exception as exc:
         print(f"[DEBUG] LLM call failed: {exc}", flush=True)
