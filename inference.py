@@ -200,7 +200,13 @@ async def run_episode(env, llm_client: OpenAI, task_id: str) -> float:
 async def main() -> None:
     llm_client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
 
-    env = await ContractRiskEnv.from_docker_image(IMAGE_NAME)
+    # Connect to environment: docker image if available, else URL
+    if IMAGE_NAME:
+        env = await ContractRiskEnv.from_docker_image(IMAGE_NAME)
+    else:
+        env_url = os.getenv("ENV_BASE_URL", "http://localhost:7860")
+        env = ContractRiskEnv(base_url=env_url)
+        await env.connect()
 
     try:
         scores = []
