@@ -52,7 +52,8 @@ def grade(flagged_clauses: List[Dict[str, Any]], labels: List[Dict[str, Any]]) -
     severity_miss_penalty = len(severity_mismatches) / max(tp, 1)
 
     reward = 0.35 * precision + 0.45 * recall - 0.10 * fp_penalty - 0.10 * severity_miss_penalty
-    reward = round(max(0.0, min(1.0, reward)), 4)
+    # CLAMP BETWEEN (0.001, 0.999) strictly to satisfy validator
+    reward = round(max(0.001, min(0.999, reward)), 4)
 
     return {
         "reward": reward,

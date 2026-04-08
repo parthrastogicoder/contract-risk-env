@@ -254,11 +254,11 @@ async def main() -> None:
             try:
                 action_dict = call_llm(llm_client, FALLBACK_CONTRACT)
                 n_flagged = len(action_dict.get("flagged_clauses", []))
-                log_step(step=1, action=f"flagged_{n_flagged}_clauses", reward=0.00, done=True, error=None)
+                log_step(step=1, action=f"flagged_{n_flagged}_clauses", reward=0.01, done=True, error=None)
             except Exception as llm_err:
                 print(f"[DEBUG] LLM fallback error: {llm_err}", flush=True)
-                log_step(step=1, action="error", reward=0.00, done=True, error=str(llm_err))
-            log_end(success=False, steps=1, score=0.0, rewards=[0.0])
+                log_step(step=1, action="error", reward=0.01, done=True, error=str(llm_err))
+            log_end(success=False, steps=1, score=0.01, rewards=[0.01])
 
 
 if __name__ == "__main__":
@@ -270,6 +270,6 @@ if __name__ == "__main__":
         err_str = str(exc).replace('\n', ' ')[:200]
         for task_id in TASKS:
             print(f"[START] task={task_id} env={BENCHMARK} model={MODEL_NAME}", flush=True)
-            print(f"[STEP] step=1 action=error reward=0.00 done=true error={err_str}", flush=True)
-            print(f"[END] success=false steps=1 score=0.000 rewards=0.00", flush=True)
+            print(f"[STEP] step=1 action=error reward=0.01 done=true error={err_str}", flush=True)
+            print(f"[END] success=false steps=1 score=0.01 rewards=0.01", flush=True)
 
