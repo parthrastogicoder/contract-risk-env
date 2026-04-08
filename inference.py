@@ -207,17 +207,7 @@ async def main() -> None:
 
     llm_client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
 
-    # Connect to environment — try strategies in order
-    if IMAGE_NAME:
-        print(f"[DEBUG] Strategy: from_docker_image({IMAGE_NAME})", flush=True)
-        env = await ContractRiskEnv.from_docker_image(IMAGE_NAME)
-    else:
-        env_url = os.getenv("ENV_BASE_URL", "http://localhost:7860")
-        print(f"[DEBUG] Strategy: URL-based connection to {env_url}", flush=True)
-        env = ContractRiskEnv(base_url=env_url)
-        await env.connect()
-    
-    print("[DEBUG] Environment connected successfully", flush=True)
+    env = await ContractRiskEnv.from_docker_image(IMAGE_NAME)
 
     try:
         scores = []
